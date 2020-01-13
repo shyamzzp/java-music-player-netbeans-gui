@@ -84,7 +84,7 @@ public final class frmMain extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         btAddmusica.setFont(new Font("Agency FB", 1, 14));
-        btAddmusica.setIcon(new ImageIcon(getClass().getResource("/Icons/AddMusica.png")));
+        btAddmusica.setIcon(new ImageIcon(getClass().getResource("/Icons/MusicIcon.png")));
         btAddmusica.setText("Add Songs");
         btAddmusica.addActionListener((ActionEvent evt) -> {
             frmMain.this.btAddmusicaActionPerformed(evt);
@@ -92,7 +92,7 @@ public final class frmMain extends javax.swing.JFrame {
         jPanel1.add(btAddmusica);
 
         btRemoveMusica.setFont(new Font("Agency FB", 1, 14));
-        btRemoveMusica.setIcon(new ImageIcon(getClass().getResource("/Icons/removeMusica.png")));
+        btRemoveMusica.setIcon(new ImageIcon(getClass().getResource("/Icons/removeMusicIcon.png")));
         btRemoveMusica.setText("Remove Selected");
         btRemoveMusica.addActionListener((ActionEvent evt) -> {
             frmMain.this.btRemoveMusicaActionPerformed(evt);
@@ -100,7 +100,7 @@ public final class frmMain extends javax.swing.JFrame {
         jPanel1.add(btRemoveMusica);
 
         btMistura.setFont(new Font("Agency FB", 1, 14));
-        btMistura.setIcon(new ImageIcon(getClass().getResource("/Icons/misturar.png")));
+        btMistura.setIcon(new ImageIcon(getClass().getResource("/Icons/suffleIcon.png")));
         btMistura.setText("Suffle");
         btMistura.addActionListener((ActionEvent evt) -> {
             frmMain.this.btMisturaActionPerformed(evt);
@@ -149,18 +149,16 @@ public final class frmMain extends javax.swing.JFrame {
 
         pnPrograma.setBorder(BorderFactory.createTitledBorder(null, "Sobre", 0, 0, new Font("Agency FB", 1, 14)));
         
-        jButton3.setIcon(new ImageIcon(getClass().getResource("/Icons/bug.png")));
-        jButton3.setToolTipText("Informe um bug");
         jButton3.addActionListener((ActionEvent evt) -> {
             frmMain.this.jButton3ActionPerformed(evt);
         });
         GroupLayout pnProgramaLayout = new GroupLayout(pnPrograma);
         pnPrograma.setLayout(pnProgramaLayout);
-        btAnteriorMusica.setIcon(new ImageIcon(getClass().getResource("/Icons/anterior.png")));
+        btAnteriorMusica.setIcon(new ImageIcon(getClass().getResource("/Icons/playPreviousIcon.png")));
         btAnteriorMusica.addActionListener((ActionEvent evt) -> {
             frmMain.this.btAnteriorMusicaActionPerformed(evt);
         });
-        btProximaMusica.setIcon(new ImageIcon(getClass().getResource("/Icons/proxima.png")));
+        btProximaMusica.setIcon(new ImageIcon(getClass().getResource("/Icons/playForwardIcon.png")));
         btProximaMusica.addActionListener((ActionEvent evt) -> {
             frmMain.this.btProximaMusicaActionPerformed(evt);
         });
