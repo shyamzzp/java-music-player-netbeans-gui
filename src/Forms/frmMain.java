@@ -1,7 +1,6 @@
 package Forms;
 
 import Entities.Music;
-import TableModel.MusicModel;
 import Utils.Time;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,6 +11,129 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
+import java.util.*;
+import javax.swing.table.AbstractTableModel;
+
+class MusicModel
+        extends AbstractTableModel {
+
+    private final String[] colunas = {"Song Name", "Author", "Album"};
+
+    private ArrayList<Music> linhas;
+
+    public MusicModel() {
+        linhas = new ArrayList();
+    }
+
+    public MusicModel(ArrayList<Music> linhas) {
+        this.linhas = linhas;
+    }
+
+    @Override
+    public int getRowCount() {
+        return linhas.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return colunas.length;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Music m = (Music) linhas.get(rowIndex);
+        switch (columnIndex) {
+            case 0:
+                return m.getSongName();
+            case 1:
+                return m.getAuthorName();
+            case 2:
+                return m.getAlbum();
+        }
+
+        return null;
+    }
+
+    @Override
+    public void setValueAt(Object objetct, int rowIndex, int columnIndex) {
+        Music m = (Music) linhas.get(rowIndex);
+        String value = (String) objetct;
+        switch (columnIndex) {
+            case 0:
+                m.setSongName(value);
+                break;
+            case 1:
+                m.setAuthorName(value);
+                break;
+            case 2:
+                m.setAlbum(value);
+                break;
+        }
+
+        fireTableRowsInserted(rowIndex, rowIndex);
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        return colunas[column];
+    }
+
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        switch (columnIndex) {
+            case 0:
+                return String.class;
+            case 1:
+                return String.class;
+            case 2:
+                return String.class;
+        }
+
+        return null;
+    }
+
+    public void limpar() {
+        linhas.clear();
+
+        fireTableDataChanged();
+    }
+
+    public void addListaDeMusicas(List<Music> musicas) {
+        int indice = getRowCount();
+
+        linhas.addAll(musicas);
+
+        fireTableRowsInserted(indice, indice + musicas.size());
+    }
+
+    public Music getMusica(int rowIndex) {
+        return (Music) linhas.get(rowIndex);
+    }
+
+    public void addMusica(Music musica) {
+        linhas.add(musica);
+
+        int ultimoIndice = getRowCount() - 1;
+
+        fireTableRowsInserted(ultimoIndice, ultimoIndice);
+    }
+
+    public void removeMusica(int indiceLinha) {
+        linhas.remove(indiceLinha);
+
+        fireTableRowsDeleted(indiceLinha, indiceLinha);
+    }
+
+    public ArrayList<Music> getAsArrayList() {
+        return linhas;
+    }
+
+    public void mistura() {
+        Collections.shuffle(linhas);
+
+        fireTableRowsUpdated(0, linhas.size() - 1);
+    }
+}
 
 public final class frmMain extends javax.swing.JFrame {
 
