@@ -59,7 +59,6 @@ public final class frmMain extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         songListList = new JTable();
         jPanel3 = new JPanel();
-   
 
         setDefaultCloseOperation(3);
         setTitle("Music Player");
@@ -131,7 +130,7 @@ public final class frmMain extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lblTitleCurrentSongName).addComponent(lblTitleCurrentSong)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lblAuthorName).addComponent(lbtituloAutor)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, 32767).addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(slider1, GroupLayout.Alignment.TRAILING, -2, 34, -2).addComponent(lbAnime, GroupLayout.Alignment.TRAILING, -2, 43, -2).addComponent(lblTimeForSong, GroupLayout.Alignment.TRAILING, -2, 34, -2))));
 
         pnPrograma.setBorder(BorderFactory.createTitledBorder(null, "Sobre", 0, 0, new Font("Agency FB", 1, 14)));
-        
+
         GroupLayout pnProgramaLayout = new GroupLayout(pnPrograma);
         pnPrograma.setLayout(pnProgramaLayout);
         btnPreviousSong.setIcon(new ImageIcon(getClass().getResource("/Icons/playPreviousIcon.png")));
@@ -236,23 +235,18 @@ public final class frmMain extends javax.swing.JFrame {
     private void btnRemoveMusicActionPerformed(ActionEvent evt) {
         Integer linha = songListList.getSelectedRow();
         if (linha > -1) {
-
             if ((lblTitleCurrentSongName.getText().equals(musicModel.getMusica(linha).getSongName())) && (lblTitleCurrentSong.getText().equals("Current Song:"))) {
-
                 stop = true;
                 tempo.setStopFlag(true);
                 btstop.setEnabled(false);
                 player.close();
                 btplay.setEnabled(true);
                 btnSuffle.setEnabled(true);
-
                 lblTitleCurrentSong.setText("Current Song:");
                 lblAuthorName.setText("Please add songs");
                 lblTitleCurrentSongName.setText("Please add songs");
             }
-
             musicModel.removeMusica(linha);
-
             if (songListList.getRowCount() > 0) {
                 btnSuffle.setEnabled(true);
             } else {
