@@ -38,8 +38,8 @@ public final class frmMain extends javax.swing.JFrame {
 
     private void initComponents() {
         jPanel1 = new JPanel();
-        btAddmusica = new JButton();
-        btRemoveMusica = new JButton();
+        btnAddMusic = new JButton();
+        btnRemoveMusic = new JButton();
         btnSuffle = new JButton();
         jPanel2 = new JPanel();
         btplay = new JButton();
@@ -67,21 +67,21 @@ public final class frmMain extends javax.swing.JFrame {
         jPanel1.setBorder(BorderFactory.createTitledBorder(null, "Music Add/Remove/Suffle", 0, 0, new Font("Agency FB", 1, 14)));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        btAddmusica.setFont(new Font("Agency FB", 1, 14));
-        btAddmusica.setIcon(new ImageIcon(getClass().getResource("/Icons/MusicIcon.png")));
-        btAddmusica.setText("Add Songs");
-        btAddmusica.addActionListener((ActionEvent evt) -> {
-            frmMain.this.btAddmusicaActionPerformed(evt);
+        btnAddMusic.setFont(new Font("Agency FB", 1, 14));
+        btnAddMusic.setIcon(new ImageIcon(getClass().getResource("/Icons/MusicIcon.png")));
+        btnAddMusic.setText("Add Songs");
+        btnAddMusic.addActionListener((ActionEvent evt) -> {
+            frmMain.this.btnAddMusicActionPerformed(evt);
         });
-        jPanel1.add(btAddmusica);
+        jPanel1.add(btnAddMusic);
 
-        btRemoveMusica.setFont(new Font("Agency FB", 1, 14));
-        btRemoveMusica.setIcon(new ImageIcon(getClass().getResource("/Icons/removeMusicIcon.png")));
-        btRemoveMusica.setText("Remove Selected");
-        btRemoveMusica.addActionListener((ActionEvent evt) -> {
-            frmMain.this.btRemoveMusicaActionPerformed(evt);
+        btnRemoveMusic.setFont(new Font("Agency FB", 1, 14));
+        btnRemoveMusic.setIcon(new ImageIcon(getClass().getResource("/Icons/removeMusicIcon.png")));
+        btnRemoveMusic.setText("Remove Selected");
+        btnRemoveMusic.addActionListener((ActionEvent evt) -> {
+            frmMain.this.btnRemoveMusicActionPerformed(evt);
         });
-        jPanel1.add(btRemoveMusica);
+        jPanel1.add(btnRemoveMusic);
 
         btnSuffle.setFont(new Font("Agency FB", 1, 14));
         btnSuffle.setIcon(new ImageIcon(getClass().getResource("/Icons/suffleIcon.png")));
@@ -194,7 +194,7 @@ public final class frmMain extends javax.swing.JFrame {
         songListList.setRowSorter(null);
     }
 
-    private void btAddmusicaActionPerformed(ActionEvent evt) {
+    private void btnAddMusicActionPerformed(ActionEvent evt) {
         if (fc.showOpenDialog(jPanel1) == 0) {
             try {
                 File[] files = fc.getSelectedFiles();
@@ -234,7 +234,7 @@ public final class frmMain extends javax.swing.JFrame {
         }
     }
 
-    private void btRemoveMusicaActionPerformed(ActionEvent evt) {
+    private void btnRemoveMusicActionPerformed(ActionEvent evt) {
         Integer linha = songListList.getSelectedRow();
         if (linha > -1) {
 
@@ -399,7 +399,7 @@ public final class frmMain extends javax.swing.JFrame {
     Integer line;
 
     javax.sound.sampled.FloatControl volCtrl;
-    private JButton btAddmusica;
+    private JButton btnAddMusic;
     private JButton btnPreviousSong;
     private JButton btnSuffle;
 
@@ -411,7 +411,7 @@ public final class frmMain extends javax.swing.JFrame {
     }
 
     private JButton btnForwardSong;
-    private JButton btRemoveMusica;
+    private JButton btnRemoveMusic;
     private JButton btplay;
     private JButton btstop;
     private JPanel jPanel1;
