@@ -53,7 +53,6 @@ public final class frmMain extends javax.swing.JFrame {
         lbtituloAutor = new JLabel();
         lblAuthorName = new JLabel();
         pnPrograma = new JPanel();
-        jButton3 = new JButton();
         btAnteriorMusica = new JButton();
         btProximaMusica = new JButton();
         jPanel4 = new JPanel();
@@ -134,9 +133,6 @@ public final class frmMain extends javax.swing.JFrame {
 
         pnPrograma.setBorder(BorderFactory.createTitledBorder(null, "Sobre", 0, 0, new Font("Agency FB", 1, 14)));
         
-        jButton3.addActionListener((ActionEvent evt) -> {
-            frmMain.this.jButton3ActionPerformed(evt);
-        });
         GroupLayout pnProgramaLayout = new GroupLayout(pnPrograma);
         pnPrograma.setLayout(pnProgramaLayout);
         btAnteriorMusica.setIcon(new ImageIcon(getClass().getResource("/Icons/playPreviousIcon.png")));
@@ -323,10 +319,6 @@ public final class frmMain extends javax.swing.JFrame {
         }
     }
 
-    private void jButton3ActionPerformed(ActionEvent evt) {
-        new frmBugReport(this, rootPaneCheckingEnabled).setVisible(true);
-    }
-
     private void btstopActionPerformed(ActionEvent evt) {
         if (songListList.getSelectedRow() == -1) {
             lblTitleCurrentSongName.setText("Please add songs");
@@ -426,7 +418,6 @@ public final class frmMain extends javax.swing.JFrame {
     private JButton btRemoveMusica;
     private JButton btplay;
     private JButton btstop;
-    private JButton jButton3;
     private JPanel jPanel1;
     private JPanel jPanel2;
     private JPanel jPanel3;
