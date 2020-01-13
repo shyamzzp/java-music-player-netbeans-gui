@@ -1,7 +1,5 @@
 package Forms;
 
-import Entities.Music;
-import Utils.Time;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
@@ -10,28 +8,218 @@ import java.util.Map;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
 import java.util.*;
 import javax.swing.table.AbstractTableModel;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
+import javazoom.jl.player.Player;
+import java.util.ArrayList;
+
+class Music
+  implements Serializable
+{
+  String SongName;
+  String AuthorName;
+  String Album;
+  Long tempo;
+  String path;
+  
+  public String getPath()
+  {
+    return path;
+  }
+  
+  public void setPath(String path) {
+    this.path = path;
+  }
+  
+  public Music(String SongName, String AuthorName, String Album, String data, Long tempo, String path) {
+    this.SongName = SongName;
+    this.AuthorName = AuthorName;
+    this.Album = Album;
+    this.tempo = tempo;
+  }
+  
+  public Music() {}
+  
+  public String getSongName()
+  {
+    return SongName;
+  }
+  
+  public void setSongName(String SongName) {
+    this.SongName = SongName;
+  }
+  
+  public String getAuthorName() {
+    return AuthorName;
+  }
+  
+  public void setAuthorName(String AuthorName) {
+    this.AuthorName = AuthorName;
+  }
+  
+  public String getAlbum() {
+    return Album;
+  }
+  
+  public void setAlbum(String Album) {
+    this.Album = Album;
+  }
+  
+  public Long getTempo() {
+    return tempo;
+  }
+  
+  public void setTempo(Long tempo) {
+    this.tempo = tempo;
+  }
+  
+  @Override
+  public String toString()
+  {
+    return "Musica{SongName=" + SongName + ", AuthorName=" + AuthorName + ", Album=" + Album + ", tempo=" + tempo + '}';
+  }
+  
+
+
+  public void serializaListaMusicas(ArrayList<Music> listaMusicas, String arquivo)
+  {
+    FileOutputStream arq = null;
+    ObjectOutputStream out = null;
+    try
+    {
+      arq = new FileOutputStream(arquivo);
+      out = new ObjectOutputStream(arq);
+      out.writeObject(listaMusicas);
+    } catch (IOException ex) {
+      System.out.println(ex.getMessage());
+    } finally {
+      try {
+        arq.close();
+        out.close();
+      } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+      }
+    }
+  }
+  
+  public ArrayList<Music> deserializaListaMusicas(String arquivo)
+  {
+    FileInputStream arqLeitura = null;
+    ObjectInputStream in = null;
+    try
+    {
+      arqLeitura = new FileInputStream(arquivo);
+      in = new ObjectInputStream(arqLeitura);
+      return (ArrayList)in.readObject();
+    } catch (ClassNotFoundException|IOException ex) {
+      System.out.println(ex.getMessage());
+    } finally {
+      try {
+        arqLeitura.close();
+        in.close();
+      } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+      }
+    }
+    return null;
+  }
+}
+
+class Time
+  extends Thread
+{
+  JLabel lbtempo;
+  Player player;
+  Long duration;
+  JSlider slider;
+  Boolean stopFlag;
+  
+  public Boolean getStopFlag()
+  {
+    return stopFlag;
+  }
+  
+  public void setStopFlag(Boolean stopFlag) {
+    this.stopFlag = stopFlag;
+  }
+  
+  public Time(Boolean stopFlag) {
+    this.stopFlag = stopFlag;
+  }
+  
+  public Time()
+  {
+    stopFlag = true;
+  }
+  
+  public Time(JLabel tempo, Player player, Long duration, JSlider slider)
+  {
+    lbtempo = tempo;
+    this.player = player;
+    this.duration = duration;
+    this.slider = slider;
+    stopFlag = false;
+  }
+  
+
+  @Override
+  public void run()
+  {
+    SimpleDateFormat dt = new SimpleDateFormat("HH:mm:ss");
+    Calendar cad = Calendar.getInstance();
+    cad.clear();
+    Date data = new Date(cad.getTime().getTime());
+    
+
+    Integer index = 2;
+    slider.setMaximum(duration.intValue());
+    while (!stopFlag)
+    {
+      cad.clear();
+      Integer value = player.getPosition() / 1000;
+      cad.add(13, value);
+      slider.setValue(value);
+      data.setTime(cad.getTime().getTime());
+      lbtempo.setText(dt.format(data));
+      
+
+      Integer localInteger1 = index;Integer localInteger2 = index = index + 1;
+      if (index > 5) {
+        index = 2;
+      }
+      
+      try
+      {
+        Thread.sleep(200L);
+      } catch (InterruptedException ex) {} }
+    slider.setValue(0);
+    lbtempo.setText("00:00:00");
+  }
+}
 
 class MusicModel
         extends AbstractTableModel {
 
     private final String[] colunas = {"Song Name", "Author", "Album"};
 
-    private ArrayList<Music> linhas;
+    private ArrayList<Music> arraylistMusic;
 
     public MusicModel() {
-        linhas = new ArrayList();
+        arraylistMusic = new ArrayList();
     }
 
-    public MusicModel(ArrayList<Music> linhas) {
-        this.linhas = linhas;
+    public MusicModel(ArrayList<Music> arraylistMusic) {
+        this.arraylistMusic = arraylistMusic;
     }
 
     @Override
     public int getRowCount() {
-        return linhas.size();
+        return arraylistMusic.size();
     }
 
     @Override
@@ -41,7 +229,7 @@ class MusicModel
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Music m = (Music) linhas.get(rowIndex);
+        Music m = (Music) arraylistMusic.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return m.getSongName();
@@ -56,7 +244,7 @@ class MusicModel
 
     @Override
     public void setValueAt(Object objetct, int rowIndex, int columnIndex) {
-        Music m = (Music) linhas.get(rowIndex);
+        Music m = (Music) arraylistMusic.get(rowIndex);
         String value = (String) objetct;
         switch (columnIndex) {
             case 0:
@@ -93,7 +281,7 @@ class MusicModel
     }
 
     public void limpar() {
-        linhas.clear();
+        arraylistMusic.clear();
 
         fireTableDataChanged();
     }
@@ -101,17 +289,17 @@ class MusicModel
     public void addListaDeMusicas(List<Music> musicas) {
         int indice = getRowCount();
 
-        linhas.addAll(musicas);
+        arraylistMusic.addAll(musicas);
 
         fireTableRowsInserted(indice, indice + musicas.size());
     }
 
     public Music getMusica(int rowIndex) {
-        return (Music) linhas.get(rowIndex);
+        return (Music) arraylistMusic.get(rowIndex);
     }
 
     public void addMusica(Music musica) {
-        linhas.add(musica);
+        arraylistMusic.add(musica);
 
         int ultimoIndice = getRowCount() - 1;
 
@@ -119,19 +307,19 @@ class MusicModel
     }
 
     public void removeMusica(int indiceLinha) {
-        linhas.remove(indiceLinha);
+        arraylistMusic.remove(indiceLinha);
 
         fireTableRowsDeleted(indiceLinha, indiceLinha);
     }
 
     public ArrayList<Music> getAsArrayList() {
-        return linhas;
+        return arraylistMusic;
     }
 
     public void mistura() {
-        Collections.shuffle(linhas);
+        Collections.shuffle(arraylistMusic);
 
-        fireTableRowsUpdated(0, linhas.size() - 1);
+        fireTableRowsUpdated(0, arraylistMusic.size() - 1);
     }
 }
 
@@ -480,8 +668,8 @@ public final class frmMain extends javax.swing.JFrame {
                                 volta = false;
                             }
                             if (line == musicModel.getRowCount()) {
-                                Integer linhaSelecionada = songListList.getSelectedRow();
-                                if (linhaSelecionada > -1) {
+                                Integer arraylistMusicelecionada = songListList.getSelectedRow();
+                                if (arraylistMusicelecionada > -1) {
                                     lblTitleCurrentSong.setText("Current Song:");
                                     lblAuthorName.setText(musicModel.getMusica(songListList.getSelectedRow()).getAuthorName());
                                     lblTitleCurrentSongName.setText(musicModel.getMusica(songListList.getSelectedRow()).getSongName());
