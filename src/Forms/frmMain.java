@@ -6,21 +6,10 @@ import Utils.Time;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Map;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JTable;
-import javax.swing.LayoutStyle;
+import javax.swing.*;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
@@ -31,14 +20,12 @@ public final class frmMain extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         tbPlayListAtual.setModel(modeloMusicas);
         setLayoutTabela();
-        lbTituloTocando.setText("Current Song:");
-        lbTocandoAgora.setText("Please add songs");
+        lblTitleCurrentSong.setText("Current Song:");
+        lblTitleCurrentSongName.setText("Please add songs");
         lbAutor.setText("Please add songs");
         slider1.setValue(0);
         btstop.setEnabled(false);
         fc.setMultiSelectionEnabled(true);
-        jcSalvaLista.setMultiSelectionEnabled(false);
-        jcSalvaLista.setApproveButtonText("Salvar");
         if (tbPlayListAtual.getRowCount() > 0) {
            
             btMistura.setEnabled(true);
@@ -60,8 +47,8 @@ public final class frmMain extends javax.swing.JFrame {
         btplay = new JButton();
         btstop = new JButton();
         jPanel5 = new JPanel();
-        lbTituloTocando = new JLabel();
-        lbTocandoAgora = new JLabel();
+        lblTitleCurrentSong = new JLabel();
+        lblTitleCurrentSongName = new JLabel();
         slider1 = new JSlider();
         lbtempoDecorrido = new JLabel();
         lbAnime = new JLabel();
@@ -125,27 +112,27 @@ public final class frmMain extends javax.swing.JFrame {
         jPanel5.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.highlight"));
         jPanel5.setBorder(BorderFactory.createEtchedBorder());
 
-        lbTituloTocando.setFont(new Font("Agency FB", 1, 14));
-        lbTituloTocando.setText("Tocando:");
+        lblTitleCurrentSong.setFont(new Font("Agency FB", 1, 14));
+        lblTitleCurrentSong.setText("Tocando:");
 
-        lbTocandoAgora.setFont(new Font("Agency FB", 1, 14));
-        lbTocandoAgora.setText("jLabel2");
+        lblTitleCurrentSongName.setFont(new Font("Agency FB", 1, 14));
+        lblTitleCurrentSongName.setText("jLabel2");
 
         slider1.setBackground(new java.awt.Color(255, 255, 255));
 
         lbtempoDecorrido.setText("00:00:00");
 
         lbtituloAutor.setFont(new Font("Agency FB", 1, 14));
-        lbtituloAutor.setText("Autor:");
+        lbtituloAutor.setText("Author:");
 
         lbAutor.setFont(new Font("Agency FB", 1, 14));
         lbAutor.setText("jLabel2");
 
         GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel5Layout.createSequentialGroup().addComponent(slider1, -2, 0, 32767).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(lbtempoDecorrido, -2, 54, -2).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(lbAnime, -2, 40, -2).addGap(25, 25, 25)).addGroup(jPanel5Layout.createSequentialGroup().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false).addGroup(GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup().addComponent(lbtituloAutor).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(lbAutor, -1, -1, 32767)).addGroup(GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup().addComponent(lbTituloTocando).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(lbTocandoAgora, -2, 182, -2))).addContainerGap(-1, 32767)))));
+        jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel5Layout.createSequentialGroup().addComponent(slider1, -2, 0, 32767).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(lbtempoDecorrido, -2, 54, -2).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(lbAnime, -2, 40, -2).addGap(25, 25, 25)).addGroup(jPanel5Layout.createSequentialGroup().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false).addGroup(GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup().addComponent(lbtituloAutor).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(lbAutor, -1, -1, 32767)).addGroup(GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup().addComponent(lblTitleCurrentSong).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(lblTitleCurrentSongName, -2, 182, -2))).addContainerGap(-1, 32767)))));
 
-        jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lbTocandoAgora).addComponent(lbTituloTocando)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lbAutor).addComponent(lbtituloAutor)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, 32767).addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(slider1, GroupLayout.Alignment.TRAILING, -2, 34, -2).addComponent(lbAnime, GroupLayout.Alignment.TRAILING, -2, 43, -2).addComponent(lbtempoDecorrido, GroupLayout.Alignment.TRAILING, -2, 34, -2))));
+        jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lblTitleCurrentSongName).addComponent(lblTitleCurrentSong)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lbAutor).addComponent(lbtituloAutor)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, 32767).addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(slider1, GroupLayout.Alignment.TRAILING, -2, 34, -2).addComponent(lbAnime, GroupLayout.Alignment.TRAILING, -2, 43, -2).addComponent(lbtempoDecorrido, GroupLayout.Alignment.TRAILING, -2, 34, -2))));
 
         pnPrograma.setBorder(BorderFactory.createTitledBorder(null, "Sobre", 0, 0, new Font("Agency FB", 1, 14)));
         
@@ -257,7 +244,7 @@ public final class frmMain extends javax.swing.JFrame {
         Integer linha = tbPlayListAtual.getSelectedRow();
         if (linha > -1) {
 
-            if ((lbTocandoAgora.getText().equals(modeloMusicas.getMusica(linha).getNome())) && (lbTituloTocando.getText().equals("Tocando:"))) {
+            if ((lblTitleCurrentSongName.getText().equals(modeloMusicas.getMusica(linha).getNome())) && (lblTitleCurrentSong.getText().equals("Tocando:"))) {
 
                 stop = true;
                 tempo.setStopFlag(true);
@@ -266,9 +253,9 @@ public final class frmMain extends javax.swing.JFrame {
                 btplay.setEnabled(true);
                 btMistura.setEnabled(true);
 
-                lbTituloTocando.setText("Current Song:");
+                lblTitleCurrentSong.setText("Current Song:");
                 lbAutor.setText("Please add songs");
-                lbTocandoAgora.setText("Please add songs");
+                lblTitleCurrentSongName.setText("Please add songs");
             }
 
             modeloMusicas.removeMusica(linha);
@@ -284,9 +271,9 @@ public final class frmMain extends javax.swing.JFrame {
     private void btMisturaActionPerformed(ActionEvent evt) {
         modeloMusicas.mistura();
         if (tbPlayListAtual.getSelectedRow() > -1) {
-            lbTituloTocando.setText("Current Song:");
+            lblTitleCurrentSong.setText("Current Song:");
             lbAutor.setText(modeloMusicas.getMusica(tbPlayListAtual.getSelectedRow()).getAutor());
-            lbTocandoAgora.setText(modeloMusicas.getMusica(tbPlayListAtual.getSelectedRow()).getNome());
+            lblTitleCurrentSongName.setText(modeloMusicas.getMusica(tbPlayListAtual.getSelectedRow()).getNome());
         }
     }
 
@@ -297,12 +284,12 @@ public final class frmMain extends javax.swing.JFrame {
         Integer linha = tbPlayListAtual.getSelectedRow();
         if (linha > -1) {
             if (tempo.getStopFlag() == true) {
-                lbTocandoAgora.setText(modeloMusicas.getMusica(linha).getNome());
+                lblTitleCurrentSongName.setText(modeloMusicas.getMusica(linha).getNome());
                 lbAutor.setText(modeloMusicas.getMusica(linha).getAutor());
             }
         }
         if (evt.getClickCount() == 2) {
-            if (!lbTituloTocando.getText().equals("Tocando:")) {
+            if (!lblTitleCurrentSong.getText().equals("Tocando:")) {
                 btplayActionPerformed(null);
             } else {
                 stop = true;
@@ -315,7 +302,7 @@ public final class frmMain extends javax.swing.JFrame {
 
     private void btProximaMusicaActionPerformed(ActionEvent evt) {
         if (tbPlayListAtual.getRowCount() > 0) {
-            if (lbTituloTocando.getText().equals("Tocando:")) {
+            if (lblTitleCurrentSong.getText().equals("Tocando:")) {
                 if (line < tbPlayListAtual.getRowCount() - 1) {
                     player.close();
                 }
@@ -327,7 +314,7 @@ public final class frmMain extends javax.swing.JFrame {
 
     private void btAnteriorMusicaActionPerformed(ActionEvent evt) {
         if (tbPlayListAtual.getRowCount() > 0) {
-            if (lbTituloTocando.getText().equals("Tocando:")) {
+            if (lblTitleCurrentSong.getText().equals("Tocando:")) {
                 if (line > 0) {
                     volta = true;
                     player.close();
@@ -344,11 +331,11 @@ public final class frmMain extends javax.swing.JFrame {
 
     private void btstopActionPerformed(ActionEvent evt) {
         if (tbPlayListAtual.getSelectedRow() == -1) {
-            lbTocandoAgora.setText("Please add songs");
+            lblTitleCurrentSongName.setText("Please add songs");
             lbAutor.setText("Please add songs");
         } else {
             lbAutor.setText(modeloMusicas.getValueAt(tbPlayListAtual.getSelectedRow(), 1).toString());
-            lbTocandoAgora.setText(modeloMusicas.getValueAt(tbPlayListAtual.getSelectedRow(), 0).toString());
+            lblTitleCurrentSongName.setText(modeloMusicas.getValueAt(tbPlayListAtual.getSelectedRow(), 0).toString());
         }
         stop = true;
         tempo.setStopFlag(stop);
@@ -356,7 +343,7 @@ public final class frmMain extends javax.swing.JFrame {
         btplay.setEnabled(true);
         btstop.setEnabled(false);
         btMistura.setEnabled(true);
-        lbTituloTocando.setText("Current Song:");
+        lblTitleCurrentSong.setText("Current Song:");
     }
 
     private void btplayActionPerformed(ActionEvent evt) {
@@ -377,9 +364,9 @@ public final class frmMain extends javax.swing.JFrame {
 
                             tempo.start();
                             tbPlayListAtual.setRowSelectionInterval(line, line);
-                            lbTituloTocando.setText("Tocando:");
+                            lblTitleCurrentSong.setText("Tocando:");
                             lbAutor.setText(modeloMusicas.getMusica(line).getAutor());
-                            lbTocandoAgora.setText(modeloMusicas.getMusica(line).getNome());
+                            lblTitleCurrentSongName.setText(modeloMusicas.getMusica(line).getNome());
 
                             player.play();
                             player.close();
@@ -394,13 +381,13 @@ public final class frmMain extends javax.swing.JFrame {
                             if (line == modeloMusicas.getRowCount()) {
                                 Integer linhaSelecionada = tbPlayListAtual.getSelectedRow();
                                 if (linhaSelecionada > -1) {
-                                    lbTituloTocando.setText("Current Song:");
+                                    lblTitleCurrentSong.setText("Current Song:");
                                     lbAutor.setText(modeloMusicas.getMusica(tbPlayListAtual.getSelectedRow()).getAutor());
-                                    lbTocandoAgora.setText(modeloMusicas.getMusica(tbPlayListAtual.getSelectedRow()).getNome());
+                                    lblTitleCurrentSongName.setText(modeloMusicas.getMusica(tbPlayListAtual.getSelectedRow()).getNome());
                                 } else {
-                                    lbTituloTocando.setText("Current Song:");
+                                    lblTitleCurrentSong.setText("Current Song:");
                                     lbAutor.setText("Please add songs");
-                                    lbTocandoAgora.setText("Please add songs");
+                                    lblTitleCurrentSongName.setText("Please add songs");
                                 }
 
                             }
@@ -418,8 +405,6 @@ public final class frmMain extends javax.swing.JFrame {
 
     MusicModel modeloMusicas = new MusicModel();
     JFileChooser fc = new JFileChooser();
-    JFileChooser jcSalvaLista = new JFileChooser();
-    JFileChooser jcImportaLista = new JFileChooser();
     Player player;
     Boolean volta = false;
     Boolean stop = false;
@@ -452,8 +437,8 @@ public final class frmMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private JLabel lbAnime;
     private JLabel lbAutor;
-    private JLabel lbTituloTocando;
-    private JLabel lbTocandoAgora;
+    private JLabel lblTitleCurrentSong;
+    private JLabel lblTitleCurrentSongName;
     private JLabel lbtempoDecorrido;
     private JLabel lbtituloAutor;
     private JPanel pnPrograma;
