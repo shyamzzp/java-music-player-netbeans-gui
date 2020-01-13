@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 public class MusicModel
         extends AbstractTableModel {
 
-    private final String[] colunas = {"Nome", "Autor", "Album"};
+    private final String[] colunas = {"Song Name", "Author", "Album"};
 
     private ArrayList<Music> linhas;
 

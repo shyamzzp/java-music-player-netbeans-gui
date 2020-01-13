@@ -14,7 +14,6 @@ public class Time
   extends Thread
 {
   JLabel lbtempo;
-  JLabel img;
   Player player;
   Long duration;
   JSlider slider;
@@ -38,14 +37,13 @@ public class Time
     stopFlag = true;
   }
   
-  public Time(JLabel tempo, Player player, Long duration, JSlider slider, JLabel img)
+  public Time(JLabel tempo, Player player, Long duration, JSlider slider)
   {
     lbtempo = tempo;
     this.player = player;
     this.duration = duration;
     this.slider = slider;
     stopFlag = false;
-    this.img = img;
   }
   
 
@@ -62,7 +60,6 @@ public class Time
     slider.setMaximum(duration.intValue());
     while (!stopFlag)
     {
-      System.out.println(stopFlag);
       cad.clear();
       Integer value = player.getPosition() / 1000;
       cad.add(13, value);
@@ -71,7 +68,6 @@ public class Time
       lbtempo.setText(dt.format(data));
       
 
-      img.setIcon(new ImageIcon(getClass().getResource("/Icons/sp" + index + ".png")));
       Integer localInteger1 = index;Integer localInteger2 = index = index + 1;
       if (index > 5) {
         index = 2;
@@ -81,9 +77,7 @@ public class Time
       {
         Thread.sleep(200L);
       } catch (InterruptedException ex) {} }
-    System.out.println(stopFlag);
     slider.setValue(0);
     lbtempo.setText("00:00:00");
-    img.setIcon(new ImageIcon(getClass().getResource("/Icons/sp1.png")));
   }
 }

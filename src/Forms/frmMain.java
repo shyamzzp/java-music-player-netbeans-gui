@@ -46,7 +46,6 @@ public final class frmMain extends javax.swing.JFrame {
             
             btMistura.setEnabled(false);
         }
-        setIconImage(new ImageIcon(getClass().getResource("/Icons/AppIcon.png")).getImage());
     }
 
     public void StopMusica() {
@@ -136,8 +135,6 @@ public final class frmMain extends javax.swing.JFrame {
 
         lbtempoDecorrido.setText("00:00:00");
 
-        lbAnime.setIcon(new ImageIcon(getClass().getResource("/Icons/sp1.png")));
-
         lbtituloAutor.setFont(new Font("Agency FB", 1, 14));
         lbtituloAutor.setText("Autor:");
 
@@ -173,7 +170,7 @@ public final class frmMain extends javax.swing.JFrame {
 
         jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING).addComponent(pnPrograma, -2, 117, -2).addGroup(jPanel2Layout.createSequentialGroup().addComponent(btplay, -2, 36, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(btstop, -2, 34, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false).addComponent(btAnteriorMusica, -2, 24, 32767).addComponent(btProximaMusica, -2, 0, 32767)))).addGap(0, 0, 32767)).addGroup(jPanel2Layout.createSequentialGroup().addContainerGap().addComponent(jPanel5, -2, -1, -2).addContainerGap(-1, 32767)));
 
-        jPanel4.setBorder(BorderFactory.createTitledBorder(null, "Musicas", 0, 0, new Font("Agency FB", 1, 14)));
+        jPanel4.setBorder(BorderFactory.createTitledBorder(null, "Music Library", 0, 0, new Font("Agency FB", 1, 14)));
 
         tbPlayListAtual.setAutoCreateRowSorter(true);
         tbPlayListAtual.setBorder(BorderFactory.createEtchedBorder());
@@ -378,7 +375,7 @@ public final class frmMain extends javax.swing.JFrame {
                             player = new Player(new java.io.FileInputStream(new File(modeloMusicas.getMusica(line).getPath())));
 
                             lbtempoDecorrido.setText(String.valueOf(player.getPosition()));
-                            tempo = new Time(lbtempoDecorrido, player, modeloMusicas.getMusica(line).getTempo(), slider1, lbAnime);
+                            tempo = new Time(lbtempoDecorrido, player, modeloMusicas.getMusica(line).getTempo(), slider1);
 
                             tempo.start();
                             tbPlayListAtual.setRowSelectionInterval(line, line);
