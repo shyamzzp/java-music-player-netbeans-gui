@@ -48,13 +48,13 @@ public final class frmMain extends javax.swing.JFrame {
         lblTitleCurrentSong = new JLabel();
         lblTitleCurrentSongName = new JLabel();
         slider1 = new JSlider();
-        lbtempoDecorrido = new JLabel();
+        lblTimeForSong = new JLabel();
         lbAnime = new JLabel();
         lbtituloAutor = new JLabel();
         lblAuthorName = new JLabel();
         pnPrograma = new JPanel();
-        btAnteriorMusica = new JButton();
-        btProximaMusica = new JButton();
+        btnPreviousSong = new JButton();
+        btnForwardSong = new JButton();
         jPanel4 = new JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         songListList = new JTable();
@@ -117,7 +117,7 @@ public final class frmMain extends javax.swing.JFrame {
 
         slider1.setBackground(new java.awt.Color(255, 255, 255));
 
-        lbtempoDecorrido.setText("00:00:00");
+        lblTimeForSong.setText("00:00:00");
 
         lbtituloAutor.setFont(new Font("Agency FB", 1, 14));
         lbtituloAutor.setText("Author:");
@@ -127,27 +127,27 @@ public final class frmMain extends javax.swing.JFrame {
 
         GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel5Layout.createSequentialGroup().addComponent(slider1, -2, 0, 32767).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(lbtempoDecorrido, -2, 54, -2).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(lbAnime, -2, 40, -2).addGap(25, 25, 25)).addGroup(jPanel5Layout.createSequentialGroup().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false).addGroup(GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup().addComponent(lbtituloAutor).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(lblAuthorName, -1, -1, 32767)).addGroup(GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup().addComponent(lblTitleCurrentSong).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(lblTitleCurrentSongName, -2, 182, -2))).addContainerGap(-1, 32767)))));
+        jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel5Layout.createSequentialGroup().addComponent(slider1, -2, 0, 32767).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(lblTimeForSong, -2, 54, -2).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(lbAnime, -2, 40, -2).addGap(25, 25, 25)).addGroup(jPanel5Layout.createSequentialGroup().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false).addGroup(GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup().addComponent(lbtituloAutor).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(lblAuthorName, -1, -1, 32767)).addGroup(GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup().addComponent(lblTitleCurrentSong).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(lblTitleCurrentSongName, -2, 182, -2))).addContainerGap(-1, 32767)))));
 
-        jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lblTitleCurrentSongName).addComponent(lblTitleCurrentSong)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lblAuthorName).addComponent(lbtituloAutor)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, 32767).addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(slider1, GroupLayout.Alignment.TRAILING, -2, 34, -2).addComponent(lbAnime, GroupLayout.Alignment.TRAILING, -2, 43, -2).addComponent(lbtempoDecorrido, GroupLayout.Alignment.TRAILING, -2, 34, -2))));
+        jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lblTitleCurrentSongName).addComponent(lblTitleCurrentSong)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(lblAuthorName).addComponent(lbtituloAutor)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, 32767).addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(slider1, GroupLayout.Alignment.TRAILING, -2, 34, -2).addComponent(lbAnime, GroupLayout.Alignment.TRAILING, -2, 43, -2).addComponent(lblTimeForSong, GroupLayout.Alignment.TRAILING, -2, 34, -2))));
 
         pnPrograma.setBorder(BorderFactory.createTitledBorder(null, "Sobre", 0, 0, new Font("Agency FB", 1, 14)));
         
         GroupLayout pnProgramaLayout = new GroupLayout(pnPrograma);
         pnPrograma.setLayout(pnProgramaLayout);
-        btAnteriorMusica.setIcon(new ImageIcon(getClass().getResource("/Icons/playPreviousIcon.png")));
-        btAnteriorMusica.addActionListener((ActionEvent evt) -> {
-            frmMain.this.btAnteriorMusicaActionPerformed(evt);
+        btnPreviousSong.setIcon(new ImageIcon(getClass().getResource("/Icons/playPreviousIcon.png")));
+        btnPreviousSong.addActionListener((ActionEvent evt) -> {
+            frmMain.this.btnPreviousSongActionPerformed(evt);
         });
-        btProximaMusica.setIcon(new ImageIcon(getClass().getResource("/Icons/playForwardIcon.png")));
-        btProximaMusica.addActionListener((ActionEvent evt) -> {
-            frmMain.this.btProximaMusicaActionPerformed(evt);
+        btnForwardSong.setIcon(new ImageIcon(getClass().getResource("/Icons/playForwardIcon.png")));
+        btnForwardSong.addActionListener((ActionEvent evt) -> {
+            frmMain.this.btnForwardSongActionPerformed(evt);
         });
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false).addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup().addComponent(btAnteriorMusica, -2, 0, 32767).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(btProximaMusica, -2, 43, -2)).addComponent(btplay, -1, 100, 32767).addComponent(btstop, -1, -1, 32767)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(jPanel5, -1, -1, 32767).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(pnPrograma, -2, -1, -2)));
+        jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false).addGroup(GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup().addComponent(btnPreviousSong, -2, 0, 32767).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(btnForwardSong, -2, 43, -2)).addComponent(btplay, -1, 100, 32767).addComponent(btstop, -1, -1, 32767)).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(jPanel5, -1, -1, 32767).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(pnPrograma, -2, -1, -2)));
 
-        jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING).addComponent(pnPrograma, -2, 117, -2).addGroup(jPanel2Layout.createSequentialGroup().addComponent(btplay, -2, 36, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(btstop, -2, 34, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false).addComponent(btAnteriorMusica, -2, 24, 32767).addComponent(btProximaMusica, -2, 0, 32767)))).addGap(0, 0, 32767)).addGroup(jPanel2Layout.createSequentialGroup().addContainerGap().addComponent(jPanel5, -2, -1, -2).addContainerGap(-1, 32767)));
+        jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING).addComponent(pnPrograma, -2, 117, -2).addGroup(jPanel2Layout.createSequentialGroup().addComponent(btplay, -2, 36, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(btstop, -2, 34, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false).addComponent(btnPreviousSong, -2, 24, 32767).addComponent(btnForwardSong, -2, 0, 32767)))).addGap(0, 0, 32767)).addGroup(jPanel2Layout.createSequentialGroup().addContainerGap().addComponent(jPanel5, -2, -1, -2).addContainerGap(-1, 32767)));
 
         jPanel4.setBorder(BorderFactory.createTitledBorder(null, "Music Library", 0, 0, new Font("Agency FB", 1, 14)));
 
@@ -294,7 +294,7 @@ public final class frmMain extends javax.swing.JFrame {
         }
     }
 
-    private void btProximaMusicaActionPerformed(ActionEvent evt) {
+    private void btnForwardSongActionPerformed(ActionEvent evt) {
         if (songListList.getRowCount() > 0) {
             if (lblTitleCurrentSong.getText().equals("Tocando:")) {
                 if (line < songListList.getRowCount() - 1) {
@@ -306,7 +306,7 @@ public final class frmMain extends javax.swing.JFrame {
         }
     }
 
-    private void btAnteriorMusicaActionPerformed(ActionEvent evt) {
+    private void btnPreviousSongActionPerformed(ActionEvent evt) {
         if (songListList.getRowCount() > 0) {
             if (lblTitleCurrentSong.getText().equals("Tocando:")) {
                 if (line > 0) {
@@ -349,8 +349,8 @@ public final class frmMain extends javax.swing.JFrame {
                         try {
                             player = new Player(new java.io.FileInputStream(new File(modeloMusicas.getMusica(line).getPath())));
 
-                            lbtempoDecorrido.setText(String.valueOf(player.getPosition()));
-                            tempo = new Time(lbtempoDecorrido, player, modeloMusicas.getMusica(line).getTempo(), slider1);
+                            lblTimeForSong.setText(String.valueOf(player.getPosition()));
+                            tempo = new Time(lblTimeForSong, player, modeloMusicas.getMusica(line).getTempo(), slider1);
 
                             tempo.start();
                             songListList.setRowSelectionInterval(line, line);
@@ -404,7 +404,7 @@ public final class frmMain extends javax.swing.JFrame {
 
     javax.sound.sampled.FloatControl volCtrl;
     private JButton btAddmusica;
-    private JButton btAnteriorMusica;
+    private JButton btnPreviousSong;
     private JButton btnSuffle;
 
     public static void main(String[] args) {
@@ -414,7 +414,7 @@ public final class frmMain extends javax.swing.JFrame {
         });
     }
 
-    private JButton btProximaMusica;
+    private JButton btnForwardSong;
     private JButton btRemoveMusica;
     private JButton btplay;
     private JButton btstop;
@@ -428,7 +428,7 @@ public final class frmMain extends javax.swing.JFrame {
     private JLabel lblAuthorName;
     private JLabel lblTitleCurrentSong;
     private JLabel lblTitleCurrentSongName;
-    private JLabel lbtempoDecorrido;
+    private JLabel lblTimeForSong;
     private JLabel lbtituloAutor;
     private JPanel pnPrograma;
     private JSlider slider1;
