@@ -1,6 +1,6 @@
 package Main;
 
-import Forms.frmMain;
+import MainForm.frmMain;
 import java.io.IOException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 public class main

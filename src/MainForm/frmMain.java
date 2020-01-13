@@ -1,4 +1,4 @@
-package Forms;
+package MainForm;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
