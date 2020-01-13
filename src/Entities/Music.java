@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class Music
   implements Serializable
 {
-  String Nome;
-  String Autor;
+  String SongName;
+  String AuthorName;
   String Album;
   String data;
   Long tempo;
@@ -29,9 +29,9 @@ public class Music
     this.path = path;
   }
   
-  public Music(String Nome, String Autor, String Album, String data, Long tempo, String direitos, String comentario, String path) {
-    this.Nome = Nome;
-    this.Autor = Autor;
+  public Music(String SongName, String AuthorName, String Album, String data, Long tempo, String direitos, String comentario, String path) {
+    this.SongName = SongName;
+    this.AuthorName = AuthorName;
     this.Album = Album;
     this.data = data;
     this.tempo = tempo;
@@ -41,21 +41,21 @@ public class Music
   
   public Music() {}
   
-  public String getNome()
+  public String getSongName()
   {
-    return Nome;
+    return SongName;
   }
   
-  public void setNome(String Nome) {
-    this.Nome = Nome;
+  public void setSongName(String SongName) {
+    this.SongName = SongName;
   }
   
-  public String getAutor() {
-    return Autor;
+  public String getAuthorName() {
+    return AuthorName;
   }
   
-  public void setAutor(String Autor) {
-    this.Autor = Autor;
+  public void setAuthorName(String AuthorName) {
+    this.AuthorName = AuthorName;
   }
   
   public String getAlbum() {
@@ -101,7 +101,7 @@ public class Music
   @Override
   public String toString()
   {
-    return "Musica{Nome=" + Nome + ", Autor=" + Autor + ", Album=" + Album + ", data=" + data + ", tempo=" + tempo + ", direitos=" + direitos + ", comentario=" + comentario + '}';
+    return "Musica{SongName=" + SongName + ", AuthorName=" + AuthorName + ", Album=" + Album + ", data=" + data + ", tempo=" + tempo + ", direitos=" + direitos + ", comentario=" + comentario + '}';
   }
   
 
@@ -113,12 +113,8 @@ public class Music
     try
     {
       arq = new FileOutputStream(arquivo);
-      
-
       out = new ObjectOutputStream(arq);
-      
-
-      out.writeObject(listaMusicas); return;
+      out.writeObject(listaMusicas);
     } catch (IOException ex) {
       System.out.println(ex.getMessage());
     } finally {
@@ -135,15 +131,10 @@ public class Music
   {
     FileInputStream arqLeitura = null;
     ObjectInputStream in = null;
-    ArrayList lista = new ArrayList();
     try
     {
       arqLeitura = new FileInputStream(arquivo);
-      
-
       in = new ObjectInputStream(arqLeitura);
-      
-
       return (ArrayList)in.readObject();
     } catch (ClassNotFoundException|IOException ex) {
       System.out.println(ex.getMessage());

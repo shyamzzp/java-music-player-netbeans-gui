@@ -36,9 +36,9 @@ public class MusicModel
         Music m = (Music) linhas.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return m.getNome();
+                return m.getSongName();
             case 1:
-                return m.getAutor();
+                return m.getAuthorName();
             case 2:
                 return m.getAlbum();
         }
@@ -52,10 +52,10 @@ public class MusicModel
         String value = (String) objetct;
         switch (columnIndex) {
             case 0:
-                m.setNome(value);
+                m.setSongName(value);
                 break;
             case 1:
-                m.setAutor(value);
+                m.setAuthorName(value);
                 break;
             case 2:
                 m.setAlbum(value);

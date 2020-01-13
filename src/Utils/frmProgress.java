@@ -62,11 +62,11 @@ public class frmProgress extends javax.swing.JDialog {
                     String key = "title";
                     String val = (String) properties.get(key);
                     lbAcao.setText("Adcionando " + val + ".mp3");
-                    musica.setNome(val);
+                    musica.setSongName(val);
 
                     key = "author";
                     val = (String) properties.get(key);
-                    musica.setAutor(val);
+                    musica.setAuthorName(val);
 
                     key = "album";
                     val = (String) properties.get(key);

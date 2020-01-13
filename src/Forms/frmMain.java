@@ -92,7 +92,6 @@ public final class frmMain extends javax.swing.JFrame {
         jPanel1.add(btnSuffle);
 
         jPanel2.setBorder(BorderFactory.createTitledBorder(null, "Player", 0, 0, new Font("Agency FB", 1, 14)));
-        jPanel2.setToolTipText("Tocando agora");
 
         btplay.setFont(new Font("Agency FB", 1, 14));
         btplay.setIcon(new ImageIcon(getClass().getResource("/Icons/play.png")));
@@ -110,7 +109,7 @@ public final class frmMain extends javax.swing.JFrame {
         jPanel5.setBorder(BorderFactory.createEtchedBorder());
 
         lblTitleCurrentSong.setFont(new Font("Agency FB", 1, 14));
-        lblTitleCurrentSong.setText("Tocando:");
+        lblTitleCurrentSong.setText("Current Song:");
 
         lblTitleCurrentSongName.setFont(new Font("Agency FB", 1, 14));
         lblTitleCurrentSongName.setText("jLabel2");
@@ -206,10 +205,10 @@ public final class frmMain extends javax.swing.JFrame {
                         Map properties = ((org.tritonus.share.sampled.file.TAudioFileFormat) baseFileFormat).properties();
                         String key = "title";
                         String val = (String) properties.get(key);
-                        musica.setNome(val);
+                        musica.setSongName(val);
                         key = "author";
                         val = (String) properties.get(key);
-                        musica.setAutor(val);
+                        musica.setAuthorName(val);
                         key = "album";
                         val = (String) properties.get(key);
                         musica.setAlbum(val);
@@ -238,7 +237,7 @@ public final class frmMain extends javax.swing.JFrame {
         Integer linha = songListList.getSelectedRow();
         if (linha > -1) {
 
-            if ((lblTitleCurrentSongName.getText().equals(musicModel.getMusica(linha).getNome())) && (lblTitleCurrentSong.getText().equals("Tocando:"))) {
+            if ((lblTitleCurrentSongName.getText().equals(musicModel.getMusica(linha).getSongName())) && (lblTitleCurrentSong.getText().equals("Current Song:"))) {
 
                 stop = true;
                 tempo.setStopFlag(true);
@@ -266,8 +265,8 @@ public final class frmMain extends javax.swing.JFrame {
         musicModel.mistura();
         if (songListList.getSelectedRow() > -1) {
             lblTitleCurrentSong.setText("Current Song:");
-            lblAuthorName.setText(musicModel.getMusica(songListList.getSelectedRow()).getAutor());
-            lblTitleCurrentSongName.setText(musicModel.getMusica(songListList.getSelectedRow()).getNome());
+            lblAuthorName.setText(musicModel.getMusica(songListList.getSelectedRow()).getAuthorName());
+            lblTitleCurrentSongName.setText(musicModel.getMusica(songListList.getSelectedRow()).getSongName());
         }
     }
 
@@ -278,12 +277,12 @@ public final class frmMain extends javax.swing.JFrame {
         Integer linha = songListList.getSelectedRow();
         if (linha > -1) {
             if (tempo.getStopFlag() == true) {
-                lblTitleCurrentSongName.setText(musicModel.getMusica(linha).getNome());
-                lblAuthorName.setText(musicModel.getMusica(linha).getAutor());
+                lblTitleCurrentSongName.setText(musicModel.getMusica(linha).getSongName());
+                lblAuthorName.setText(musicModel.getMusica(linha).getAuthorName());
             }
         }
         if (evt.getClickCount() == 2) {
-            if (!lblTitleCurrentSong.getText().equals("Tocando:")) {
+            if (!lblTitleCurrentSong.getText().equals("Current Song:")) {
                 btplayActionPerformed(null);
             } else {
                 stop = true;
@@ -296,7 +295,7 @@ public final class frmMain extends javax.swing.JFrame {
 
     private void btnForwardSongActionPerformed(ActionEvent evt) {
         if (songListList.getRowCount() > 0) {
-            if (lblTitleCurrentSong.getText().equals("Tocando:")) {
+            if (lblTitleCurrentSong.getText().equals("Current Song:")) {
                 if (line < songListList.getRowCount() - 1) {
                     player.close();
                 }
@@ -308,7 +307,7 @@ public final class frmMain extends javax.swing.JFrame {
 
     private void btnPreviousSongActionPerformed(ActionEvent evt) {
         if (songListList.getRowCount() > 0) {
-            if (lblTitleCurrentSong.getText().equals("Tocando:")) {
+            if (lblTitleCurrentSong.getText().equals("Current Song:")) {
                 if (line > 0) {
                     volta = true;
                     player.close();
@@ -354,9 +353,9 @@ public final class frmMain extends javax.swing.JFrame {
 
                             tempo.start();
                             songListList.setRowSelectionInterval(line, line);
-                            lblTitleCurrentSong.setText("Tocando:");
-                            lblAuthorName.setText(musicModel.getMusica(line).getAutor());
-                            lblTitleCurrentSongName.setText(musicModel.getMusica(line).getNome());
+                            lblTitleCurrentSong.setText("Current Song:");
+                            lblAuthorName.setText(musicModel.getMusica(line).getAuthorName());
+                            lblTitleCurrentSongName.setText(musicModel.getMusica(line).getSongName());
 
                             player.play();
                             player.close();
@@ -368,8 +367,8 @@ public final class frmMain extends javax.swing.JFrame {
                                 Integer linhaSelecionada = songListList.getSelectedRow();
                                 if (linhaSelecionada > -1) {
                                     lblTitleCurrentSong.setText("Current Song:");
-                                    lblAuthorName.setText(musicModel.getMusica(songListList.getSelectedRow()).getAutor());
-                                    lblTitleCurrentSongName.setText(musicModel.getMusica(songListList.getSelectedRow()).getNome());
+                                    lblAuthorName.setText(musicModel.getMusica(songListList.getSelectedRow()).getAuthorName());
+                                    lblTitleCurrentSongName.setText(musicModel.getMusica(songListList.getSelectedRow()).getSongName());
                                 } else {
                                     lblTitleCurrentSong.setText("Current Song:");
                                     lblAuthorName.setText("Please add songs");
