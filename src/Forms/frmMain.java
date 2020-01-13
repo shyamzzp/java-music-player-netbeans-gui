@@ -18,7 +18,7 @@ public final class frmMain extends javax.swing.JFrame {
     public frmMain() {
         initComponents();
         setLocationRelativeTo(null);
-        tbPlayListAtual.setModel(modeloMusicas);
+        songListList.setModel(modeloMusicas);
         setLayoutTabela();
         lblTitleCurrentSong.setText("Current Song:");
         lblTitleCurrentSongName.setText("Please add songs");
@@ -26,7 +26,7 @@ public final class frmMain extends javax.swing.JFrame {
         slider1.setValue(0);
         btstop.setEnabled(false);
         fc.setMultiSelectionEnabled(true);
-        if (tbPlayListAtual.getRowCount() > 0) {
+        if (songListList.getRowCount() > 0) {
             btnSuffle.setEnabled(true);
         } else {
             btnSuffle.setEnabled(false);
@@ -58,7 +58,7 @@ public final class frmMain extends javax.swing.JFrame {
         btProximaMusica = new JButton();
         jPanel4 = new JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbPlayListAtual = new JTable();
+        songListList = new JTable();
         jPanel3 = new JPanel();
    
 
@@ -155,25 +155,25 @@ public final class frmMain extends javax.swing.JFrame {
 
         jPanel4.setBorder(BorderFactory.createTitledBorder(null, "Music Library", 0, 0, new Font("Agency FB", 1, 14)));
 
-        tbPlayListAtual.setAutoCreateRowSorter(true);
-        tbPlayListAtual.setBorder(BorderFactory.createEtchedBorder());
-        tbPlayListAtual.setFont(new Font("Century Gothic", 1, 10));
-        tbPlayListAtual.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{{null, null, null, null}, {null, null, null, null}, {null, null, null, null}, {null, null, null, null}}, new String[]{"Title 1", "Title 2", "Title 3", "Title 4"}));
+        songListList.setAutoCreateRowSorter(true);
+        songListList.setBorder(BorderFactory.createEtchedBorder());
+        songListList.setFont(new Font("Century Gothic", 1, 10));
+        songListList.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{{null, null, null, null}, {null, null, null, null}, {null, null, null, null}, {null, null, null, null}}, new String[]{"Title 1", "Title 2", "Title 3", "Title 4"}));
 
-        tbPlayListAtual.setAutoResizeMode(4);
-        tbPlayListAtual.setSelectionMode(0);
-        tbPlayListAtual.addMouseListener(new java.awt.event.MouseAdapter() {
+        songListList.setAutoResizeMode(4);
+        songListList.setSelectionMode(0);
+        songListList.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                frmMain.this.tbPlayListAtualMouseClicked(evt);
+                frmMain.this.songListListMouseClicked(evt);
             }
 
             @Override
             public void mouseEntered(MouseEvent evt) {
-                frmMain.this.tbPlayListAtualMouseEntered(evt);
+                frmMain.this.songListListMouseEntered(evt);
             }
         });
-        jScrollPane1.setViewportView(tbPlayListAtual);
+        jScrollPane1.setViewportView(songListList);
 
         jPanel3.setLayout(new java.awt.GridLayout(1, 0));
         GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
@@ -192,10 +192,10 @@ public final class frmMain extends javax.swing.JFrame {
     }
 
     public void setLayoutTabela() {
-        tbPlayListAtual.getColumnModel().getColumn(0).setPreferredWidth(150);
-        tbPlayListAtual.getColumnModel().getColumn(1).setPreferredWidth(100);
-        tbPlayListAtual.getColumnModel().getColumn(2).setPreferredWidth(70);
-        tbPlayListAtual.setRowSorter(null);
+        songListList.getColumnModel().getColumn(0).setPreferredWidth(150);
+        songListList.getColumnModel().getColumn(1).setPreferredWidth(100);
+        songListList.getColumnModel().getColumn(2).setPreferredWidth(70);
+        songListList.setRowSorter(null);
     }
 
     private void btAddmusicaActionPerformed(ActionEvent evt) {
@@ -230,7 +230,7 @@ public final class frmMain extends javax.swing.JFrame {
             }
         }
 
-        if (tbPlayListAtual.getRowCount() > 0) {
+        if (songListList.getRowCount() > 0) {
             btnSuffle.setEnabled(true);
 
         } else {
@@ -239,7 +239,7 @@ public final class frmMain extends javax.swing.JFrame {
     }
 
     private void btRemoveMusicaActionPerformed(ActionEvent evt) {
-        Integer linha = tbPlayListAtual.getSelectedRow();
+        Integer linha = songListList.getSelectedRow();
         if (linha > -1) {
 
             if ((lblTitleCurrentSongName.getText().equals(modeloMusicas.getMusica(linha).getNome())) && (lblTitleCurrentSong.getText().equals("Tocando:"))) {
@@ -258,7 +258,7 @@ public final class frmMain extends javax.swing.JFrame {
 
             modeloMusicas.removeMusica(linha);
 
-            if (tbPlayListAtual.getRowCount() > 0) {
+            if (songListList.getRowCount() > 0) {
                 btnSuffle.setEnabled(true);
             } else {
                 btnSuffle.setEnabled(false);
@@ -268,18 +268,18 @@ public final class frmMain extends javax.swing.JFrame {
 
     private void btnSuffleActionPerformed(ActionEvent evt) {
         modeloMusicas.mistura();
-        if (tbPlayListAtual.getSelectedRow() > -1) {
+        if (songListList.getSelectedRow() > -1) {
             lblTitleCurrentSong.setText("Current Song:");
-            lblAuthorName.setText(modeloMusicas.getMusica(tbPlayListAtual.getSelectedRow()).getAutor());
-            lblTitleCurrentSongName.setText(modeloMusicas.getMusica(tbPlayListAtual.getSelectedRow()).getNome());
+            lblAuthorName.setText(modeloMusicas.getMusica(songListList.getSelectedRow()).getAutor());
+            lblTitleCurrentSongName.setText(modeloMusicas.getMusica(songListList.getSelectedRow()).getNome());
         }
     }
 
-    private void tbPlayListAtualMouseEntered(MouseEvent evt) {
+    private void songListListMouseEntered(MouseEvent evt) {
     }
 
-    private void tbPlayListAtualMouseClicked(MouseEvent evt) {
-        Integer linha = tbPlayListAtual.getSelectedRow();
+    private void songListListMouseClicked(MouseEvent evt) {
+        Integer linha = songListList.getSelectedRow();
         if (linha > -1) {
             if (tempo.getStopFlag() == true) {
                 lblTitleCurrentSongName.setText(modeloMusicas.getMusica(linha).getNome());
@@ -299,9 +299,9 @@ public final class frmMain extends javax.swing.JFrame {
     }
 
     private void btProximaMusicaActionPerformed(ActionEvent evt) {
-        if (tbPlayListAtual.getRowCount() > 0) {
+        if (songListList.getRowCount() > 0) {
             if (lblTitleCurrentSong.getText().equals("Tocando:")) {
-                if (line < tbPlayListAtual.getRowCount() - 1) {
+                if (line < songListList.getRowCount() - 1) {
                     player.close();
                 }
                 btplay.setEnabled(false);
@@ -311,7 +311,7 @@ public final class frmMain extends javax.swing.JFrame {
     }
 
     private void btAnteriorMusicaActionPerformed(ActionEvent evt) {
-        if (tbPlayListAtual.getRowCount() > 0) {
+        if (songListList.getRowCount() > 0) {
             if (lblTitleCurrentSong.getText().equals("Tocando:")) {
                 if (line > 0) {
                     volta = true;
@@ -328,12 +328,12 @@ public final class frmMain extends javax.swing.JFrame {
     }
 
     private void btstopActionPerformed(ActionEvent evt) {
-        if (tbPlayListAtual.getSelectedRow() == -1) {
+        if (songListList.getSelectedRow() == -1) {
             lblTitleCurrentSongName.setText("Please add songs");
             lblAuthorName.setText("Please add songs");
         } else {
-            lblAuthorName.setText(modeloMusicas.getValueAt(tbPlayListAtual.getSelectedRow(), 1).toString());
-            lblTitleCurrentSongName.setText(modeloMusicas.getValueAt(tbPlayListAtual.getSelectedRow(), 0).toString());
+            lblAuthorName.setText(modeloMusicas.getValueAt(songListList.getSelectedRow(), 1).toString());
+            lblTitleCurrentSongName.setText(modeloMusicas.getValueAt(songListList.getSelectedRow(), 0).toString());
         }
         stop = true;
         tempo.setStopFlag(stop);
@@ -345,7 +345,7 @@ public final class frmMain extends javax.swing.JFrame {
     }
 
     private void btplayActionPerformed(ActionEvent evt) {
-        final Integer linha = tbPlayListAtual.getSelectedRow();
+        final Integer linha = songListList.getSelectedRow();
         if (linha > -1) {
 
             new Thread() {
@@ -361,7 +361,7 @@ public final class frmMain extends javax.swing.JFrame {
                             tempo = new Time(lbtempoDecorrido, player, modeloMusicas.getMusica(line).getTempo(), slider1);
 
                             tempo.start();
-                            tbPlayListAtual.setRowSelectionInterval(line, line);
+                            songListList.setRowSelectionInterval(line, line);
                             lblTitleCurrentSong.setText("Tocando:");
                             lblAuthorName.setText(modeloMusicas.getMusica(line).getAutor());
                             lblTitleCurrentSongName.setText(modeloMusicas.getMusica(line).getNome());
@@ -377,11 +377,11 @@ public final class frmMain extends javax.swing.JFrame {
                                 Integer localInteger2 = frmMain.this.line = line + 1;
                             }
                             if (line == modeloMusicas.getRowCount()) {
-                                Integer linhaSelecionada = tbPlayListAtual.getSelectedRow();
+                                Integer linhaSelecionada = songListList.getSelectedRow();
                                 if (linhaSelecionada > -1) {
                                     lblTitleCurrentSong.setText("Current Song:");
-                                    lblAuthorName.setText(modeloMusicas.getMusica(tbPlayListAtual.getSelectedRow()).getAutor());
-                                    lblTitleCurrentSongName.setText(modeloMusicas.getMusica(tbPlayListAtual.getSelectedRow()).getNome());
+                                    lblAuthorName.setText(modeloMusicas.getMusica(songListList.getSelectedRow()).getAutor());
+                                    lblTitleCurrentSongName.setText(modeloMusicas.getMusica(songListList.getSelectedRow()).getNome());
                                 } else {
                                     lblTitleCurrentSong.setText("Current Song:");
                                     lblAuthorName.setText("Please add songs");
@@ -441,5 +441,5 @@ public final class frmMain extends javax.swing.JFrame {
     private JLabel lbtituloAutor;
     private JPanel pnPrograma;
     private JSlider slider1;
-    private JTable tbPlayListAtual;
+    private JTable songListList;
 }
