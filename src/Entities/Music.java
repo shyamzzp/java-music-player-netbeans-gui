@@ -14,10 +14,7 @@ public class Music
   String SongName;
   String AuthorName;
   String Album;
-  String data;
   Long tempo;
-  String direitos;
-  String comentario;
   String path;
   
   public String getPath()
@@ -29,14 +26,11 @@ public class Music
     this.path = path;
   }
   
-  public Music(String SongName, String AuthorName, String Album, String data, Long tempo, String direitos, String comentario, String path) {
+  public Music(String SongName, String AuthorName, String Album, String data, Long tempo, String path) {
     this.SongName = SongName;
     this.AuthorName = AuthorName;
     this.Album = Album;
-    this.data = data;
     this.tempo = tempo;
-    this.direitos = direitos;
-    this.comentario = comentario;
   }
   
   public Music() {}
@@ -66,14 +60,6 @@ public class Music
     this.Album = Album;
   }
   
-  public String getData() {
-    return data;
-  }
-  
-  public void setData(String data) {
-    this.data = data;
-  }
-  
   public Long getTempo() {
     return tempo;
   }
@@ -82,26 +68,10 @@ public class Music
     this.tempo = tempo;
   }
   
-  public String getDireitos() {
-    return direitos;
-  }
-  
-  public void setDireitos(String direitos) {
-    this.direitos = direitos;
-  }
-  
-  public String getComentario() {
-    return comentario;
-  }
-  
-  public void setComentario(String comentario) {
-    this.comentario = comentario;
-  }
-  
   @Override
   public String toString()
   {
-    return "Musica{SongName=" + SongName + ", AuthorName=" + AuthorName + ", Album=" + Album + ", data=" + data + ", tempo=" + tempo + ", direitos=" + direitos + ", comentario=" + comentario + '}';
+    return "Musica{SongName=" + SongName + ", AuthorName=" + AuthorName + ", Album=" + Album + ", tempo=" + tempo + '}';
   }
   
 

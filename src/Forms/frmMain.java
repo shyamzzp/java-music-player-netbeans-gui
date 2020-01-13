@@ -381,16 +381,13 @@ public final class frmMain extends javax.swing.JFrame {
             btstop.setEnabled(true);
         }
     }
-
     MusicModel musicModel = new MusicModel();
     JFileChooser fc = new JFileChooser();
     Player player;
     Boolean volta = false;
     Boolean stop = false;
     Time tempo = new Time();
-
     Integer line;
-
     javax.sound.sampled.FloatControl volCtrl;
     private JButton btnAddMusic;
     private JButton btnPreviousSong;
