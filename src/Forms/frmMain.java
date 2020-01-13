@@ -18,7 +18,7 @@ public final class frmMain extends javax.swing.JFrame {
     public frmMain() {
         initComponents();
         setLocationRelativeTo(null);
-        songListList.setModel(modeloMusicas);
+        songListList.setModel(musicModel);
         setLayoutTabela();
         lblTitleCurrentSong.setText("Current Song:");
         lblTitleCurrentSongName.setText("Please add songs");
@@ -217,7 +217,7 @@ public final class frmMain extends javax.swing.JFrame {
                         Long valLong = (Long) properties.get(key);
                         musica.setTempo(valLong / 1000000L);
                         musica.setPath(file.getAbsolutePath());
-                        modeloMusicas.addMusica(musica);
+                        musicModel.addMusica(musica);
                     }
                 }
 
@@ -238,7 +238,7 @@ public final class frmMain extends javax.swing.JFrame {
         Integer linha = songListList.getSelectedRow();
         if (linha > -1) {
 
-            if ((lblTitleCurrentSongName.getText().equals(modeloMusicas.getMusica(linha).getNome())) && (lblTitleCurrentSong.getText().equals("Tocando:"))) {
+            if ((lblTitleCurrentSongName.getText().equals(musicModel.getMusica(linha).getNome())) && (lblTitleCurrentSong.getText().equals("Tocando:"))) {
 
                 stop = true;
                 tempo.setStopFlag(true);
@@ -252,7 +252,7 @@ public final class frmMain extends javax.swing.JFrame {
                 lblTitleCurrentSongName.setText("Please add songs");
             }
 
-            modeloMusicas.removeMusica(linha);
+            musicModel.removeMusica(linha);
 
             if (songListList.getRowCount() > 0) {
                 btnSuffle.setEnabled(true);
@@ -263,11 +263,11 @@ public final class frmMain extends javax.swing.JFrame {
     }
 
     private void btnSuffleActionPerformed(ActionEvent evt) {
-        modeloMusicas.mistura();
+        musicModel.mistura();
         if (songListList.getSelectedRow() > -1) {
             lblTitleCurrentSong.setText("Current Song:");
-            lblAuthorName.setText(modeloMusicas.getMusica(songListList.getSelectedRow()).getAutor());
-            lblTitleCurrentSongName.setText(modeloMusicas.getMusica(songListList.getSelectedRow()).getNome());
+            lblAuthorName.setText(musicModel.getMusica(songListList.getSelectedRow()).getAutor());
+            lblTitleCurrentSongName.setText(musicModel.getMusica(songListList.getSelectedRow()).getNome());
         }
     }
 
@@ -278,8 +278,8 @@ public final class frmMain extends javax.swing.JFrame {
         Integer linha = songListList.getSelectedRow();
         if (linha > -1) {
             if (tempo.getStopFlag() == true) {
-                lblTitleCurrentSongName.setText(modeloMusicas.getMusica(linha).getNome());
-                lblAuthorName.setText(modeloMusicas.getMusica(linha).getAutor());
+                lblTitleCurrentSongName.setText(musicModel.getMusica(linha).getNome());
+                lblAuthorName.setText(musicModel.getMusica(linha).getAutor());
             }
         }
         if (evt.getClickCount() == 2) {
@@ -324,8 +324,8 @@ public final class frmMain extends javax.swing.JFrame {
             lblTitleCurrentSongName.setText("Please add songs");
             lblAuthorName.setText("Please add songs");
         } else {
-            lblAuthorName.setText(modeloMusicas.getValueAt(songListList.getSelectedRow(), 1).toString());
-            lblTitleCurrentSongName.setText(modeloMusicas.getValueAt(songListList.getSelectedRow(), 0).toString());
+            lblAuthorName.setText(musicModel.getValueAt(songListList.getSelectedRow(), 1).toString());
+            lblTitleCurrentSongName.setText(musicModel.getValueAt(songListList.getSelectedRow(), 0).toString());
         }
         stop = true;
         tempo.setStopFlag(stop);
@@ -345,35 +345,31 @@ public final class frmMain extends javax.swing.JFrame {
                 public void run() {
                     line = linha;
                     stop = false;
-                    while ((!stop) && (line < modeloMusicas.getRowCount())) {
+                    while ((!stop) && (line < musicModel.getRowCount())) {
                         try {
-                            player = new Player(new java.io.FileInputStream(new File(modeloMusicas.getMusica(line).getPath())));
+                            player = new Player(new java.io.FileInputStream(new File(musicModel.getMusica(line).getPath())));
 
                             lblTimeForSong.setText(String.valueOf(player.getPosition()));
-                            tempo = new Time(lblTimeForSong, player, modeloMusicas.getMusica(line).getTempo(), slider1);
+                            tempo = new Time(lblTimeForSong, player, musicModel.getMusica(line).getTempo(), slider1);
 
                             tempo.start();
                             songListList.setRowSelectionInterval(line, line);
                             lblTitleCurrentSong.setText("Tocando:");
-                            lblAuthorName.setText(modeloMusicas.getMusica(line).getAutor());
-                            lblTitleCurrentSongName.setText(modeloMusicas.getMusica(line).getNome());
+                            lblAuthorName.setText(musicModel.getMusica(line).getAutor());
+                            lblTitleCurrentSongName.setText(musicModel.getMusica(line).getNome());
 
                             player.play();
                             player.close();
                             tempo.setStopFlag(true);
-                            Integer localInteger1;
                             if (volta) {
                                 volta = false;
-                            } else {
-                                localInteger1 = line;
-                                Integer localInteger2 = frmMain.this.line = line + 1;
                             }
-                            if (line == modeloMusicas.getRowCount()) {
+                            if (line == musicModel.getRowCount()) {
                                 Integer linhaSelecionada = songListList.getSelectedRow();
                                 if (linhaSelecionada > -1) {
                                     lblTitleCurrentSong.setText("Current Song:");
-                                    lblAuthorName.setText(modeloMusicas.getMusica(songListList.getSelectedRow()).getAutor());
-                                    lblTitleCurrentSongName.setText(modeloMusicas.getMusica(songListList.getSelectedRow()).getNome());
+                                    lblAuthorName.setText(musicModel.getMusica(songListList.getSelectedRow()).getAutor());
+                                    lblTitleCurrentSongName.setText(musicModel.getMusica(songListList.getSelectedRow()).getNome());
                                 } else {
                                     lblTitleCurrentSong.setText("Current Song:");
                                     lblAuthorName.setText("Please add songs");
@@ -393,7 +389,7 @@ public final class frmMain extends javax.swing.JFrame {
         }
     }
 
-    MusicModel modeloMusicas = new MusicModel();
+    MusicModel musicModel = new MusicModel();
     JFileChooser fc = new JFileChooser();
     Player player;
     Boolean volta = false;

@@ -15,7 +15,7 @@ public class frmProgress extends javax.swing.JDialog {
 
     Integer capacidadeBarraProgresso;
     File[] musicas;
-    ArrayList<Music> modeloMusicas;
+    ArrayList<Music> musicModel;
     private JProgressBar barraprogresso;
     private JLabel jLabel1;
     private JLabel jLabel2;
@@ -26,7 +26,7 @@ public class frmProgress extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        modeloMusicas = new ArrayList();
+        musicModel = new ArrayList();
         capacidadeBarraProgresso = 0;
     }
 
@@ -39,12 +39,12 @@ public class frmProgress extends javax.swing.JDialog {
         this.musicas = musicas;
     }
 
-    public ArrayList<Music> getModeloMusicas() {
-        return modeloMusicas;
+    public ArrayList<Music> getmusicModel() {
+        return musicModel;
     }
 
-    public void setModeloMusicas(ArrayList<Music> modeloMusicas) {
-        this.modeloMusicas = modeloMusicas;
+    public void setmusicModel(ArrayList<Music> musicModel) {
+        this.musicModel = musicModel;
     }
 
     public void addMusicas() {
@@ -78,7 +78,7 @@ public class frmProgress extends javax.swing.JDialog {
 
                     musica.setPath(musicas[i].getAbsolutePath());
 
-                    modeloMusicas.add(musica);
+                    musicModel.add(musica);
 
                     barraprogresso.setValue(i);
                 }
