@@ -27,11 +27,9 @@ public final class frmMain extends javax.swing.JFrame {
         btstop.setEnabled(false);
         fc.setMultiSelectionEnabled(true);
         if (tbPlayListAtual.getRowCount() > 0) {
-           
-            btMistura.setEnabled(true);
+            btnSuffle.setEnabled(true);
         } else {
-            
-            btMistura.setEnabled(false);
+            btnSuffle.setEnabled(false);
         }
     }
 
@@ -42,7 +40,7 @@ public final class frmMain extends javax.swing.JFrame {
         jPanel1 = new JPanel();
         btAddmusica = new JButton();
         btRemoveMusica = new JButton();
-        btMistura = new JButton();
+        btnSuffle = new JButton();
         jPanel2 = new JPanel();
         btplay = new JButton();
         btstop = new JButton();
@@ -86,13 +84,13 @@ public final class frmMain extends javax.swing.JFrame {
         });
         jPanel1.add(btRemoveMusica);
 
-        btMistura.setFont(new Font("Agency FB", 1, 14));
-        btMistura.setIcon(new ImageIcon(getClass().getResource("/Icons/suffleIcon.png")));
-        btMistura.setText("Suffle");
-        btMistura.addActionListener((ActionEvent evt) -> {
-            frmMain.this.btMisturaActionPerformed(evt);
+        btnSuffle.setFont(new Font("Agency FB", 1, 14));
+        btnSuffle.setIcon(new ImageIcon(getClass().getResource("/Icons/suffleIcon.png")));
+        btnSuffle.setText("Suffle");
+        btnSuffle.addActionListener((ActionEvent evt) -> {
+            frmMain.this.btnSuffleActionPerformed(evt);
         });
-        jPanel1.add(btMistura);
+        jPanel1.add(btnSuffle);
 
         jPanel2.setBorder(BorderFactory.createTitledBorder(null, "Player", 0, 0, new Font("Agency FB", 1, 14)));
         jPanel2.setToolTipText("Tocando agora");
@@ -233,10 +231,10 @@ public final class frmMain extends javax.swing.JFrame {
         }
 
         if (tbPlayListAtual.getRowCount() > 0) {
-            btMistura.setEnabled(true);
+            btnSuffle.setEnabled(true);
 
         } else {
-            btMistura.setEnabled(false);
+            btnSuffle.setEnabled(false);
         }
     }
 
@@ -251,7 +249,7 @@ public final class frmMain extends javax.swing.JFrame {
                 btstop.setEnabled(false);
                 player.close();
                 btplay.setEnabled(true);
-                btMistura.setEnabled(true);
+                btnSuffle.setEnabled(true);
 
                 lblTitleCurrentSong.setText("Current Song:");
                 lbAutor.setText("Please add songs");
@@ -261,14 +259,14 @@ public final class frmMain extends javax.swing.JFrame {
             modeloMusicas.removeMusica(linha);
 
             if (tbPlayListAtual.getRowCount() > 0) {
-                btMistura.setEnabled(true);
+                btnSuffle.setEnabled(true);
             } else {
-                btMistura.setEnabled(false);
+                btnSuffle.setEnabled(false);
             }
         }
     }
 
-    private void btMisturaActionPerformed(ActionEvent evt) {
+    private void btnSuffleActionPerformed(ActionEvent evt) {
         modeloMusicas.mistura();
         if (tbPlayListAtual.getSelectedRow() > -1) {
             lblTitleCurrentSong.setText("Current Song:");
@@ -342,7 +340,7 @@ public final class frmMain extends javax.swing.JFrame {
         player.close();
         btplay.setEnabled(true);
         btstop.setEnabled(false);
-        btMistura.setEnabled(true);
+        btnSuffle.setEnabled(true);
         lblTitleCurrentSong.setText("Current Song:");
     }
 
@@ -397,7 +395,7 @@ public final class frmMain extends javax.swing.JFrame {
                     }
                 }
             }.start();
-            btMistura.setEnabled(false);
+            btnSuffle.setEnabled(false);
             btplay.setEnabled(false);
             btstop.setEnabled(true);
         }
@@ -415,7 +413,7 @@ public final class frmMain extends javax.swing.JFrame {
     javax.sound.sampled.FloatControl volCtrl;
     private JButton btAddmusica;
     private JButton btAnteriorMusica;
-    private JButton btMistura;
+    private JButton btnSuffle;
 
     public static void main(String[] args) {
 
